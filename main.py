@@ -23,12 +23,15 @@ def main():
 
     word_counter = {}
     for gram in babbage_grams:
-        if gram not in word_counter.keys():
-            word_counter[gram] = 1
+        if gram[0] not in word_counter.keys():
+            word_counter[gram[0]] = [[gram[1], 1]]
         else:
-            word_counter[gram] += 1
+            for duo_list in word_counter[gram[0]]:
+                if duo_list[0] == gram[1]:
+                    duo_list[1] += 1
+    # figure out how to add a new list to the value list
 
-    print(len(word_counter.keys()))
+    print(word_counter['THE'])
 
 
 if __name__ == "__main__":
@@ -37,7 +40,10 @@ if __name__ == "__main__":
 
 # dictionary of all seen words in one corpus:
 # Key: unique word
-# Value: list of tuples (next word, # of occurrences)
+# Value: list of lists [2] [next word, # of occurrences]
+#
+# EX: dict = {
+#       'THE' : ['CAT', 2], ['RAT', 4], ['MAT', 1]
 #
 # a^x = y, log(base a) y = x
 # P(a) = 0.125 (1/8)
