@@ -1,37 +1,21 @@
 # File: main.py
 # Author: Alec Grace
-# Created on: 26 Feb 2022
+# Created on: 26 March 2022
 # Purpose:
 #   driver for CS360 Project 3: Author Prediction Using Bayesian Analysis
+from file_reader import FileReader
+
 
 def main():
 
-    sentences = []
-    babbage_grams = []
-    with open('babbage-train.txt', 'r') as babbage_file:
-        lines = babbage_file.readlines()
-        for line in lines:
-            line = line.rstrip('\n')
-            line = '<sol>,' + line + ',<end>'
-            split_line = line.split(',')
-            sentences.append(split_line)
-    babbage_file.close()
+    babbage_info = FileReader('babbage-train.txt')
+    freud_info = FileReader('freud-train.txt')
+    poe_info = FileReader('poe-train.txt')
 
-    for line in sentences:
-        for i in range(len(line) - 1):
-            babbage_grams.append((line[i], line[i + 1]))
-
-    word_counter = {}
-    for gram in babbage_grams:
-        if gram[0] not in word_counter.keys():
-            word_counter[gram[0]] = [[gram[1], 1]]
-        else:
-            for duo_list in word_counter[gram[0]]:
-                if duo_list[0] == gram[1]:
-                    duo_list[1] += 1
-    # figure out how to add a new list to the value list
-
-    print(word_counter['THE'])
+    freud_info.word_result('IN')
+    print(babbage_info.total_words)
+    print(freud_info.total_words)
+    print(poe_info.total_words)
 
 
 if __name__ == "__main__":
