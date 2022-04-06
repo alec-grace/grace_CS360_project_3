@@ -5,7 +5,9 @@
 #   class to be used in main.py for CS360 Project 3
 
 class FileReader:
-    
+
+    # TODO: include option in __init__ method to specify training or testing file
+    # TODO: in order to avoid unnecessary parsing
     def __init__(self, filename: str):
         self.word_frequencies = {}
         self.total_words = 0
