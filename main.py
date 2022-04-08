@@ -24,11 +24,11 @@ def main():
         low_author = ''
         for author in training:
             current = TestAgainst(author, test_file)
-            print("Author: " + str(current.data[0].capitalize()) + " tested against "
+            print("Author: " + str(current.data[0]) + " | tested against "
                   + test_file + " results in " + str(current.data[1]))
             if current_low is None or current_low < current.data[1]:
                 current_low = current.data[1]
-                low_author = str(current.data[0].capitalize())
+                low_author = str(current.data[0])
         print('\n' + low_author + " is most likely the author of " + test_file + '\n')
 
 
