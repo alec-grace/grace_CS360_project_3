@@ -40,7 +40,7 @@ class TestAgainst:
         for gram in self.testing.author_grams:
             if gram[0] == '<sol>':
                 frequencies.append(self.author_training.word_freq('<sol>'))
-            elif gram[0] in self.author_training.word_tracker.keys():
+            if gram[0] in self.author_training.word_tracker.keys():
                 for val_list in self.author_training.word_tracker[gram[0]]:
                     if val_list[0] == gram[1]:
                         freq = self.author_training.local_freq(gram[0], gram[1])
